@@ -1,3 +1,15 @@
+# Cargar el conjunto de datos PlantGrowth original
+data("PlantGrowth")
+
+# Crear una copia con datos faltantes
+set.seed(123) # para reproducibilidad
+PlantGrowth_na <- PlantGrowth
+num_na <- 5   # número de valores a reemplazar con NA
+na_indices <- sample(1:nrow(PlantGrowth_na), num_na)
+PlantGrowth_na$weight[na_indices] <- NA
+
+# Funciones de Estadísticas Descriptivas para PlantGrowth_na por grupo
+
 # 1. Media del Peso por Grupo (ignorar NA)
 calcular_media_por_grupo <- function() {
   mean_vals <- tapply(PlantGrowth_na$weight, PlantGrowth_na$group, mean, na.rm = TRUE) # Insertar código aquí
